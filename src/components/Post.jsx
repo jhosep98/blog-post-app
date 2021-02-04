@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Post = () => (
+const Post = ({ title, body }) => (
   <div className="col-sm-6 mt-3">
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{body}</p>
         <div className="d-grid gap-2 d-md-flex">
           <button type="button" className="btn btn-outline-primary">
             <svg
@@ -48,4 +47,10 @@ const Post = () => (
     </div>
   </div>
 );
+
+Post.propTypes = {
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+};
+
 export default Post;
