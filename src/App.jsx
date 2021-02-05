@@ -1,12 +1,16 @@
 import React from 'react';
-import PostCard from './components/PostCard';
-import PostForm from './components/PostForm';
+import { Provider } from 'react-redux';
+import AddPost from './components/AddPost';
+import PostCard from './components/ListPost';
+import store from './redux/store/store';
 
 const App = () => (
-  <div className="container">
-    <h1 className="text-center">Challenge posts</h1>
-    <PostForm />
-    <PostCard />
-  </div>
+  <Provider store={store}>
+    <div className="container">
+      <h1 className="text-center">Challenge posts</h1>
+      <AddPost />
+      <PostCard />
+    </div>
+  </Provider>
 );
 export default App;
