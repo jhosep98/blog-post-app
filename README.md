@@ -1,6 +1,6 @@
 # Blog post app
 
-Desarrollo de un CRUD de post y usando redux.
+Desarrollo de un CRUD de posts y usando redux.
 
 ## Table of contents
 
@@ -10,7 +10,7 @@ Desarrollo de un CRUD de post y usando redux.
 
 ## Why use redux?
 
-> A medida que avanzaba en el proyecto me di cuenta de que redux no es una muy buena opción para administrar el estado de esta aplicación, por lo tanto me habría inclinado por usar la API de contexto, y en cuanto a la implementación de redux se me hizo complejo y usa pocos características de las muchas que tiene redux para ofrecer, pero si decidiera mejorar la aplicación con una API real, sé que ya tengo la base para construir una aplicación mucho más grande, lo cual es un punto a favor de redux.
+> A medida que avanzaba en el proyecto me di cuenta de que redux no es una muy buena opción para administrar el estado de esta aplicación, por lo tanto me habría inclinado por usar context API que ofrece react, y en cuanto a la implementación de redux se me hizo complejo y usa pocas características de las muchas que tiene redux para ofrecer, pero si decidiera mejorar la aplicación con una API real, sé que ya tengo la base para construir una aplicación mucho más grande, lo cual es un punto a favor de redux.
 
 ## Technologies
 
