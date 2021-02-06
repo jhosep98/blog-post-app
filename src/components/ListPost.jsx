@@ -1,28 +1,34 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import useFetch from '../hooks/useFetch';
-import showPosts from '../redux/actions/postsActions';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import setPost from '../redux/actions/postsActions';
+import loadPosts from '../redux/helpers/loadPost';
 import Post from './Post';
 
 const PostCard = () => {
   const dispatch = useDispatch();
-  const baseURL = 'https://jsonplaceholder.typicode.com/posts';
-  const { data, loading } = useFetch(baseURL);
 
-  const POSTS = dispatch(showPosts(data));
-  const { payload } = !!POSTS && POSTS;
-  console.log(payload);
+  useEffect(() => {
+    const fetchData = async () => {
+      const posts = await loadPosts();
+      dispatch(setPost(posts));
+    };
+    fetchData();
+  }, []);
+
+  const { posts } = useSelector((state) => state);
+
   return (
     <div className="row mt-3">
       <h2 className="text-center">posts</h2>
       <hr />
-      {loading ? (
-        <div className="alert alert-info text-center">Loading....</div>
-      ) : (
-        payload.map((post) => (
-          <Post key={post.id} title={post.title} body={post.body} />
-        ))
-      )}
+      {posts.map((post) => (
+        <Post
+          key={post.id}
+          title={post.title}
+          body={post.body}
+          postId={post.id}
+        />
+      ))}
     </div>
   );
 };

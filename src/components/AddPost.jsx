@@ -1,19 +1,23 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../redux/actions/postsActions';
+
 import useForm from '../hooks/useForm';
+import PostFinder from '../api/PostFinder';
 
 const AddPost = () => {
+  const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({
     title: '',
     body: '',
   });
   const { title, body } = formValues;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      title,
-      body,
-    });
+    const response = await PostFinder.post('/', formValues);
+    const { data } = response;
+    dispatch(createPost(data));
   };
 
   return (

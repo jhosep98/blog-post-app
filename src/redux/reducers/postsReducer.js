@@ -1,13 +1,22 @@
-const postsReducer = (state = [], action) => {
+const initialState = {
+  posts: [],
+};
+
+const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SHOW_POSTS':
-      return state;
+    case 'SET_POSTS':
+      return {
+        ...state,
+        posts: [...action.payload],
+      };
     case 'CREATE_POST':
-      return [...state, action.payload];
-    case 'UPDATE_POST':
-      return [...state, action.payload];
+      return {
+        posts: [...state.posts, action.payload],
+      };
     case 'DELETE_POST':
-      return state.filter((post) => post.id !== action.payload);
+      return {
+        posts: state.posts.filter((todo) => todo.id !== action.payload),
+      };
     default:
       return state;
   }
