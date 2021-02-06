@@ -7,17 +7,23 @@ import PostFinder from '../api/PostFinder';
 
 const AddPost = () => {
   const dispatch = useDispatch();
+
   const [formValues, handleInputChange] = useForm({
     title: '',
     body: '',
   });
   const { title, body } = formValues;
 
+  // adding a new post:
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await PostFinder.post('/', formValues);
-    const { data } = response;
-    dispatch(createPost(data));
+    try {
+      const response = await PostFinder.post('/', formValues);
+      const { data } = response;
+      dispatch(createPost(data));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -35,6 +41,7 @@ const AddPost = () => {
           value={title}
           onChange={handleInputChange}
           autoComplete="off"
+          required
         />
       </div>
       <div className="mb-3 form-group">
@@ -49,6 +56,7 @@ const AddPost = () => {
           value={body}
           onChange={handleInputChange}
           autoComplete="off"
+          required
         />
       </div>
       <button type="submit" className="btn btn-outline-primary">

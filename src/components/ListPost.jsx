@@ -4,15 +4,19 @@ import setPost from '../redux/actions/postsActions';
 import loadPosts from '../redux/helpers/loadPost';
 import Post from './Post';
 
-const PostCard = () => {
+const ListPost = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const posts = await loadPosts();
-      dispatch(setPost(posts));
-    };
-    fetchData();
+    try {
+      const fetchData = async () => {
+        const posts = await loadPosts();
+        dispatch(setPost(posts));
+      };
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   const { posts } = useSelector((state) => state);
@@ -33,4 +37,4 @@ const PostCard = () => {
   );
 };
 
-export default PostCard;
+export default ListPost;
